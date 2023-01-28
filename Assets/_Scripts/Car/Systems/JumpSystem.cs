@@ -25,7 +25,8 @@ namespace RxceGame
 
             foreach ((RefRW<PhysicsVelocity> velocity, PhysicsMass mass, RefRW<CarMoveParams> carParams) in SystemAPI.Query<RefRW<PhysicsVelocity>, PhysicsMass, RefRW<CarMoveParams>>())
             {
-                if (carParams.ValueRO.JumpTrigger)
+                //if (carParams.ValueRO.JumpTrigger)
+                if (Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.W))
                 {
                     // Jump by applying an impulse on y Axis
                     velocity.ValueRW.ApplyLinearImpulse(mass, new float3(0, carParams.ValueRO.jumpImpulse, 0));
