@@ -1,11 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using Unity.Entities;
+using Unity.Jobs;
+using Unity.Mathematics;
+using Unity.Physics;
+using Unity.Physics.Extensions;
+using UnityEngine;
 
 namespace RxceGame
 {
-    public struct InputControllerSystem : ISystem
+    public partial struct InputControllerSystem : ISystem
     {
         public void OnCreate(ref SystemState state)
         {
@@ -19,7 +21,16 @@ namespace RxceGame
 
         public void OnUpdate(ref SystemState state)
         {
+            //float deltaTime = Time.deltaTime;
 
+            foreach (var (playerCar, carParams) in
+            SystemAPI.Query<PlayerCar, RefRW<CarMoveParams>>())
+            {
+                if (Input.GetKey(KeyCode.Space))
+                {
+                    carParams.ValueRW.JumpTrigger = true;
+                }
+            }
         }
 
     }

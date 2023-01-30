@@ -23,15 +23,12 @@ namespace RxceGame
         {
             float deltaTime = Time.deltaTime;
 
-            foreach ((RefRW<PhysicsVelocity> velocity, PhysicsMass mass, RefRW<CarMoveParams> carParams) in SystemAPI.Query<RefRW<PhysicsVelocity>, PhysicsMass, RefRW<CarMoveParams>>())
+            foreach (var (velocity, mass, carParams) in
+            SystemAPI.Query<RefRW<PhysicsVelocity>, PhysicsMass, RefRW<CarMoveParams>>())
             {
-                //if (carParams.ValueRO.JumpTrigger)
-                if (Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.W))
+                if (carParams.ValueRO.JumpTrigger)
                 {
-                    // Jump by applying an impulse on y Axis
                     velocity.ValueRW.ApplyLinearImpulse(mass, new float3(0, carParams.ValueRO.jumpImpulse, 0));
-
-                    // Consume trigger
                     carParams.ValueRW.JumpTrigger = false;
                 }
             }
