@@ -6,21 +6,27 @@ using Unity.Transforms;
 
 namespace RxceGame
 {
-    public partial class CameraFollower : SystemBase
+    public partial struct CameraFollowerSystem : ISystem
     {
-        CameraManager _cam;
-
-        protected override void OnCreate()
+        public void OnCreate(ref SystemState state)
         {
-            var _cam = CameraManager.Instance;
+            state.RequireForUpdate<PlayerCar>();
         }
 
-        protected override void OnUpdate()
+        public void OnDestroy(ref SystemState state)
         {
-            if (_cam == null)
+
+        }
+
+        public void OnUpdate(ref SystemState state)
+        {
+            var cam = CameraManager.Instance;
+            var playerTransform = SystemAPI.GetAspectRO<TransformAspect>(SystemAPI.GetSingletonEntity<PlayerCar>());
+
+            if (cam == null)
                 return;
 
-            //_cam.SetCameraPosition()
+            cam.SetTargetPosition(playerTransform.WorldPosition);
         }
     }
 }

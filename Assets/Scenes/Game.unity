@@ -175,6 +175,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1691155486981632790, guid: c0d8e071c78b14e46b691af8aaade983, type: 3}
+      propertyPath: m_Creator
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 1691155486981632791, guid: c0d8e071c78b14e46b691af8aaade983, type: 3}
       propertyPath: m_Name
       value: EasyGround
@@ -958,6 +962,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6024c3ac5bc87b446b3a4bdc4a024312, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  smoothTime: 0.1
+  offset: {x: 1.25, y: 0.75, z: 0}
 --- !u!1 &665343707
 GameObject:
   m_ObjectHideFlags: 0
@@ -1474,6 +1480,10 @@ PrefabInstance:
     - target: {fileID: 5961283390190444600, guid: 4f318aa569521af45a60a93753e1a0b4, type: 3}
       propertyPath: m_Name
       value: EasyGround1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5961283390190444601, guid: 4f318aa569521af45a60a93753e1a0b4, type: 3}
+      propertyPath: m_Creator
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 5961283390190444606, guid: 4f318aa569521af45a60a93753e1a0b4, type: 3}
       propertyPath: m_Color.b

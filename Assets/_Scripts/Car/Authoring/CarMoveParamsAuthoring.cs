@@ -7,10 +7,10 @@ namespace RxceGame
 {
     public class CarMoveParamsAuthoring : MonoBehaviour
     {
+        public float mass;
         public float acceleration;
         public float maxSpeed;
         public float jumpImpulse;
-        public bool JumpTrigger { get; set; }
     }
 
     public class SpeedBaker : Baker<CarMoveParamsAuthoring>
@@ -19,6 +19,7 @@ namespace RxceGame
         {
             AddComponent(new CarMoveParams
             {
+                mass = authoring.mass,
                 acceleration = authoring.acceleration,
                 maxSpeed = authoring.maxSpeed,
                 jumpImpulse = authoring.jumpImpulse
