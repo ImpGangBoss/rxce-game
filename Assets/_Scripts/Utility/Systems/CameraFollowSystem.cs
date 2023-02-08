@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Unity.Entities;
 using Unity.Transforms;
+using Unity.Physics.Aspects;
 
 namespace RxceGame
 {
@@ -21,12 +22,12 @@ namespace RxceGame
         public void OnUpdate(ref SystemState state)
         {
             var cam = CameraManager.Instance;
-            var playerTransform = SystemAPI.GetAspectRO<TransformAspect>(SystemAPI.GetSingletonEntity<PlayerCar>());
+            var playerCarBody = SystemAPI.GetAspectRW<RigidBodyAspect>(SystemAPI.GetSingletonEntity<PlayerCar>());
 
             if (cam == null)
                 return;
 
-            cam.SetTargetPosition(playerTransform.WorldPosition);
+            cam.SetTargetPosition(playerCarBody.Position);
         }
     }
 }

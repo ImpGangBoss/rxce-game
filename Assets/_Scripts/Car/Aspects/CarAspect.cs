@@ -29,17 +29,8 @@ namespace RxceGame
         {
             if (velocity.ValueRO.Linear.x < moveParams.ValueRO.maxSpeed)
             {
-                //velocity.ValueRW.ApplyLinearImpulse(mass.ValueRO, new float3(moveParams.ValueRO.acceleration * deltaTime, 0f, 0f));
                 rigidBodyAspect.ApplyLinearImpulseWorldSpace(new float3(moveParams.ValueRO.acceleration * deltaTime, 0f, 0f));
             }
-
-            // var timeAhead = timeFromStart - moveParams.ValueRO.lastPhysicsUpdateTime;
-            // var graphicalInterpolationBuffer = EntityManager.GetComponentData<PhysicsGraphicalInterpolationBuffer>(entity);
-            // var smoothedTransform = GraphicalSmoothingUtility.InterpolateUsingVelocity(graphicalInterpolationBuffer.PreviousTransform,
-            //                     graphicalInterpolationBuffer.PreviousVelocity, velocity.ValueRO, mass.ValueRO, timeAhead, timeAhead / 0.02f);
-            // transformAspect.WorldPosition = smoothedTransform.pos;
-
-            // moveParams.ValueRW.lastPhysicsUpdateTime = timeFromStart;
         }
     }
 }

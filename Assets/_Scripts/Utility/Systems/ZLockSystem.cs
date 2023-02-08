@@ -4,6 +4,7 @@ using UnityEngine;
 using Unity.Entities;
 using Unity.Transforms;
 using Unity.Mathematics;
+using Unity.Physics.Aspects;
 
 namespace RxceGame
 {
@@ -21,15 +22,15 @@ namespace RxceGame
 
         public void OnUpdate(ref SystemState state)
         {
-            foreach (var tform in SystemAPI.Query<TransformAspect>())
+            foreach (var rbody in SystemAPI.Query<RigidBodyAspect>())
             {
-                var prevPos = tform.WorldPosition;
+                var prevPos = rbody.Position;
                 if (prevPos.z != 0f)
-                    tform.WorldPosition -= new float3(0f, 0f, prevPos.z);
+                    rbody.Position -= new float3(0f, 0f, prevPos.z);
 
-                var prevRot = tform.WorldRotation;
+                var prevRot = rbody.Rotation;
                 if (prevRot.value.x != 0f || prevRot.value.y != 0f)
-                    tform.WorldRotation = new quaternion(0f, 0f, prevRot.value.z, prevRot.value.w);
+                    rbody.Rotation = new quaternion(0f, 0f, prevRot.value.z, prevRot.value.w);
             }
         }
     }
