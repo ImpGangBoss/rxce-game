@@ -11,25 +11,15 @@ namespace RxceGame
 {
     public partial struct CarAccelerationSystem : ISystem
     {
-        public void OnCreate(ref SystemState state)
-        {
-            foreach (var car in SystemAPI.Query<CarAspect>())
-            {
-                Debug.LogWarning("EHRER");
-                car.SetCarParamsOnStart();
-            }
-        }
+        public void OnCreate(ref SystemState state) { }
 
-        public void OnDestroy(ref SystemState state)
-        {
-
-        }
+        public void OnDestroy(ref SystemState state) { }
 
         public void OnUpdate(ref SystemState state)
         {
             foreach (var car in SystemAPI.Query<CarAspect>())
             {
-                car.AddAcceleration(Time.deltaTime, Time.realtimeSinceStartup);
+                car.AddAcceleration(Time.deltaTime);
             }
         }
     }

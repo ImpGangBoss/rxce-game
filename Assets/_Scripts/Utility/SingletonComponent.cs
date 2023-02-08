@@ -1,34 +1,37 @@
 ﻿using UnityEngine;
 
-public class SingletonComponent<T> : MonoBehaviour where T : MonoBehaviour
+namespace RxceGame
 {
-    private static T _instance;
-
-    public static T Instance
+    public class SingletonComponent<T> : MonoBehaviour where T : MonoBehaviour
     {
-        get
+        private static T _instance;
+
+        public static T Instance
         {
-            if (_instance == null)
+            get
             {
-                _instance = FindObjectOfType<T>();
-
                 if (_instance == null)
-                    Debug.LogError($"Singleton {typeof(T)} was not found!");
+                {
+                    _instance = FindObjectOfType<T>();
+
+                    if (_instance == null)
+                        Debug.LogError($"Singleton {typeof(T)} was not found!");
+                }
+
+                return _instance;
             }
-
-            return _instance;
         }
-    }
 
-    private void OnEnable()
-    {
-        var curObjectScripts = FindObjectsOfType<T>();
-
-        if (curObjectScripts.Length > 1)
+        private void OnEnable()
         {
-            Debug.LogWarning($"Singleton {typeof(T)} should be the only instance!");
+            var curObjectScripts = FindObjectsOfType<T>();
 
-            Destroy(gameObject);
+            if (curObjectScripts.Length > 1)
+            {
+                Debug.LogWarning($"Singleton {typeof(T)} should be the only instance!");
+
+                Destroy(gameObject);
+            }
         }
     }
 }

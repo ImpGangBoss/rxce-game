@@ -11,6 +11,8 @@ namespace RxceGame
         public float acceleration;
         public float maxSpeed;
         public float jumpImpulse;
+        public float rotationSpeed;
+        public float brakeSpeed;
     }
 
     public class SpeedBaker : Baker<CarMoveParamsAuthoring>
@@ -22,7 +24,9 @@ namespace RxceGame
                 mass = authoring.mass,
                 acceleration = authoring.acceleration,
                 maxSpeed = authoring.maxSpeed,
-                jumpImpulse = authoring.jumpImpulse
+                jumpImpulse = authoring.jumpImpulse,
+                rotationSpeed = authoring.rotationSpeed,
+                brakeSpeed = authoring.brakeSpeed
             });
         }
     }

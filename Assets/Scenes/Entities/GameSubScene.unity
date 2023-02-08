@@ -401,10 +401,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f06d774dd7c381a4eae31e6c2f060880, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mass: 3
+  mass: 4
   acceleration: 10
   maxSpeed: 10
-  jumpImpulse: 1
+  jumpImpulse: 5
+  rotationSpeed: 10
+  brakeSpeed: 2
 --- !u!114 &841796581
 MonoBehaviour:
   m_ObjectHideFlags: 0

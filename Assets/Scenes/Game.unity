@@ -1699,7 +1699,7 @@ MonoBehaviour:
     effect: 0.15
     offset: {x: 0, y: 0, z: 0}
   - image: {fileID: 21300000, guid: 480b8a805f6af7f4f8fe3ce0771e49ea, type: 3}
-    effect: 0
+    effect: 1
     offset: {x: 0, y: 0, z: 0}
   - image: {fileID: 21300000, guid: 66491ff42e2a01545b17dfe48a752135, type: 3}
     effect: 0.05

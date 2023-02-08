@@ -11,24 +11,31 @@ namespace RxceGame
     {
         public void OnCreate(ref SystemState state)
         {
-
+            state.RequireForUpdate<PlayerCar>();
         }
 
-        public void OnDestroy(ref SystemState state)
-        {
-
-        }
+        public void OnDestroy(ref SystemState state) { }
 
         public void OnUpdate(ref SystemState state)
         {
-            //float deltaTime = Time.deltaTime;
-
-            foreach (var (playerCar, carParams) in
-            SystemAPI.Query<PlayerCar, RefRW<CarMoveParams>>())
+            foreach (var (playerCar, car) in
+            SystemAPI.Query<PlayerCar, CarAspect>())
             {
                 if (Input.GetKey(KeyCode.Space))
                 {
-                    carParams.ValueRW.JumpTrigger = true;
+                    car.Jump();
+                }
+                if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
+                {
+                    car.RotateBody(Time.deltaTime, true);
+                }
+                if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
+                {
+                    car.RotateBody(Time.deltaTime, false);
+                }
+                if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
+                {
+                    car.Brake(Time.deltaTime);
                 }
             }
         }
