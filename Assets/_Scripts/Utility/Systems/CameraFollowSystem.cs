@@ -11,7 +11,7 @@ namespace RxceGame
     {
         public void OnCreate(ref SystemState state)
         {
-            state.RequireForUpdate<PlayerCar>();
+            state.RequireForUpdate<PlayerTag>();
         }
 
         public void OnDestroy(ref SystemState state)
@@ -22,7 +22,7 @@ namespace RxceGame
         public void OnUpdate(ref SystemState state)
         {
             var cam = CameraManager.Instance;
-            var playerCarBody = SystemAPI.GetAspectRW<RigidBodyAspect>(SystemAPI.GetSingletonEntity<PlayerCar>());
+            var playerCarBody = SystemAPI.GetAspectRW<RigidBodyAspect>(SystemAPI.GetSingletonEntity<PlayerTag>());
 
             if (cam == null)
                 return;

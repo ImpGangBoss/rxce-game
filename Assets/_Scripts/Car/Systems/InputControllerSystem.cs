@@ -11,7 +11,7 @@ namespace RxceGame
     {
         public void OnCreate(ref SystemState state)
         {
-            state.RequireForUpdate<PlayerCar>();
+            state.RequireForUpdate<PlayerTag>();
         }
 
         public void OnDestroy(ref SystemState state) { }
@@ -19,7 +19,7 @@ namespace RxceGame
         public void OnUpdate(ref SystemState state)
         {
             foreach (var (playerCar, car) in
-            SystemAPI.Query<PlayerCar, CarAspect>())
+            SystemAPI.Query<PlayerTag, CarAspect>())
             {
                 if (Input.GetKey(KeyCode.Space))
                 {

@@ -7,12 +7,9 @@ namespace RxceGame
 {
     public class CarMoveParamsAuthoring : MonoBehaviour
     {
-        public float mass;
-        public float acceleration;
-        public float maxSpeed;
-        public float jumpImpulse;
-        public float rotationSpeed;
-        public float brakeSpeed;
+        [SerializeField] private MoveParamsData carConfig;
+
+        public MoveParamsData CarConfig { get => carConfig; }
     }
 
     public class SpeedBaker : Baker<CarMoveParamsAuthoring>
@@ -21,12 +18,12 @@ namespace RxceGame
         {
             AddComponent(new CarMoveParams
             {
-                mass = authoring.mass,
-                acceleration = authoring.acceleration,
-                maxSpeed = authoring.maxSpeed,
-                jumpImpulse = authoring.jumpImpulse,
-                rotationSpeed = authoring.rotationSpeed,
-                brakeSpeed = authoring.brakeSpeed
+                mass = authoring.CarConfig.Mass,
+                acceleration = authoring.CarConfig.Acceleration,
+                maxSpeed = authoring.CarConfig.MaxSpeed,
+                jumpImpulse = authoring.CarConfig.JumpImpulse,
+                rotationSpeed = authoring.CarConfig.RotationSpeed,
+                brakeSpeed = authoring.CarConfig.BrakeSpeed
             });
         }
     }

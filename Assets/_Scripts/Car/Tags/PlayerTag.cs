@@ -5,8 +5,8 @@ using Unity.Entities;
 
 namespace RxceGame
 {
-    public struct PlayerCar : IComponentData
+    public struct PlayerTag : IComponentData
     {
-        public int hp;
+
     }
 }
