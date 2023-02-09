@@ -30,5 +30,7 @@ namespace RxceGame
         Vector3 CutOffZ(Vector3 v) => new Vector3(v.x, v.y, _tform.position.z);
 
         public void SetTargetPosition(Vector3 target) => _targetPos = CutOffZ(target);
+
+        public Camera GetMainCamera() => _mainCamera;
     }
 }

@@ -1,20 +1,19 @@
 using Unity.Entities;
-using Unity.Jobs;
-using Unity.Mathematics;
-using Unity.Physics;
-using Unity.Physics.Extensions;
 using UnityEngine;
-using Unity.Physics.GraphicsIntegration;
-using Unity.Transforms;
+using Unity.Burst;
 
 namespace RxceGame
 {
+    [BurstCompile]
     public partial struct CarAccelerationSystem : ISystem
     {
+        [BurstCompile]
         public void OnCreate(ref SystemState state) { }
 
+        [BurstCompile]
         public void OnDestroy(ref SystemState state) { }
 
+        [BurstCompile]
         public void OnUpdate(ref SystemState state)
         {
             foreach (var car in SystemAPI.Query<CarAspect>())

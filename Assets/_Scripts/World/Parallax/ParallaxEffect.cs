@@ -32,7 +32,7 @@ namespace RxceGame
                 _startPos.Add(tempClone.transform.position);
             }
 
-            _mainCameraTransform = Camera.main.transform;
+            _mainCameraTransform = CameraManager.Instance.GetMainCamera().transform;
         }
 
         void Update()

@@ -1,23 +1,20 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using Unity.Entities;
-using Unity.Transforms;
 using Unity.Physics.Aspects;
+using Unity.Burst;
 
 namespace RxceGame
 {
+    [BurstCompile]
     public partial struct CameraFollowerSystem : ISystem
     {
+        [BurstCompile]
         public void OnCreate(ref SystemState state)
         {
             state.RequireForUpdate<PlayerTag>();
         }
 
-        public void OnDestroy(ref SystemState state)
-        {
-
-        }
+        [BurstCompile]
+        public void OnDestroy(ref SystemState state) { }
 
         public void OnUpdate(ref SystemState state)
         {

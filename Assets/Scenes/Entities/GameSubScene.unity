@@ -123,6 +123,52 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &384844244
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 384844245}
+  - component: {fileID: 384844246}
+  m_Layer: 0
+  m_Name: PlayerSpawner(Entity)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &384844245
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 384844244}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -5.5, y: 2, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &384844246
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 384844244}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d757c0bbbf2226d4b975a62229ad6fda, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerCarPrefab: {fileID: 3370102584180055445, guid: 18180f4feb502d94d96bd26ae7534734, type: 3}
+  spawnPos: {fileID: 384844245}
 --- !u!1 &964567480
 GameObject:
   m_ObjectHideFlags: 0
@@ -426,7 +472,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3935083470350835716, guid: 8861fdd4b481a51439957634781dc1cc, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3935083470350835716, guid: 8861fdd4b481a51439957634781dc1cc, type: 3}
       propertyPath: m_LocalPosition.x
@@ -491,7 +537,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6750801150292794724, guid: 39a03a79391eeec46adce2f35c530dcf, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6750801150292794724, guid: 39a03a79391eeec46adce2f35c530dcf, type: 3}
       propertyPath: m_LocalPosition.x

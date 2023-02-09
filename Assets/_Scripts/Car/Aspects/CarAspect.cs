@@ -40,7 +40,7 @@ namespace RxceGame
             if (moveParams.ValueRO.JumpTrigger)
             {
                 velocity.ValueRW.ApplyLinearImpulse(mass.ValueRO, new float3(0, moveParams.ValueRO.jumpImpulse, 0));
-                //moveParams.ValueRW.JumpTrigger = false;
+                moveParams.ValueRW.JumpTrigger = false;
             }
         }
 
