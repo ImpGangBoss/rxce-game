@@ -22,7 +22,7 @@ namespace RxceGame
             if (!moveParams.ValueRO.initialized)
             {
                 rigidBodyAspect.Mass = moveParams.ValueRW.mass;
-                moveParams.ValueRW.JumpTrigger = true;
+                moveParams.ValueRW.JumpTrigger = false;
                 moveParams.ValueRW.initialized = true;
             }
         }
@@ -55,5 +55,7 @@ namespace RxceGame
         {
             velocity.ValueRW.Linear *= (1f - deltaTime * moveParams.ValueRO.brakeSpeed);
         }
+
+        public void SetJumpTrigger(bool v) => moveParams.ValueRW.JumpTrigger = v;
     }
 }

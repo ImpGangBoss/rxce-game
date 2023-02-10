@@ -11,6 +11,7 @@ namespace RxceGame
     {
         public override void Bake(GroundAuthoring authoring)
         {
+            AddComponent(new GroundTag { });
         }
     }
 }

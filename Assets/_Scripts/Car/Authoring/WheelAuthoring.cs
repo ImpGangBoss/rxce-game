@@ -11,6 +11,7 @@ namespace RxceGame
     {
         public override void Bake(WheelAuthoring authoring)
         {
+            AddComponent(new WheelTag { });
         }
     }
 }

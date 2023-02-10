@@ -356,7 +356,7 @@ MonoBehaviour:
     m_Template: {fileID: 0}
     m_CollisionResponse:
       m_Override: 0
-      m_Value: 1
+      m_Value: 0
     m_Friction:
       m_Override: 0
       m_Value:
@@ -541,11 +541,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6750801150292794724, guid: 39a03a79391eeec46adce2f35c530dcf, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.76
+      value: -5.46
       objectReference: {fileID: 0}
     - target: {fileID: 6750801150292794724, guid: 39a03a79391eeec46adce2f35c530dcf, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 1.82
       objectReference: {fileID: 0}
     - target: {fileID: 6750801150292794724, guid: 39a03a79391eeec46adce2f35c530dcf, type: 3}
       propertyPath: m_LocalPosition.z
