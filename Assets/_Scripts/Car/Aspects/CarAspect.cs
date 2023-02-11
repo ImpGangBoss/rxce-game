@@ -17,12 +17,13 @@ namespace RxceGame
         readonly RefRW<PhysicsVelocity> velocity;
         readonly RefRW<PhysicsMass> mass;
 
-        public void SetCarParamsOnStart()
+        public void SetCarParamsOnStart(float3 spawnPos)
         {
             if (!moveParams.ValueRO.initialized)
             {
                 rigidBodyAspect.Mass = moveParams.ValueRW.mass;
                 moveParams.ValueRW.JumpTrigger = false;
+                rigidBodyAspect.Position = spawnPos;
                 moveParams.ValueRW.initialized = true;
             }
         }
@@ -57,5 +58,6 @@ namespace RxceGame
         }
 
         public void SetJumpTrigger(bool v) => moveParams.ValueRW.JumpTrigger = v;
+        public Entity Entity() => entity;
     }
 }

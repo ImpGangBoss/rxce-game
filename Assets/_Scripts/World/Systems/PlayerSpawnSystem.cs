@@ -2,6 +2,7 @@ using Unity.Entities;
 using Unity.Burst;
 using Unity.Collections;
 using Unity.Transforms;
+using Unity.Physics.Aspects;
 
 namespace RxceGame
 {
@@ -29,7 +30,7 @@ namespace RxceGame
 
             var player = ecb.Instantiate(playerSpawner.PlayerCarPrefab());
             ecb.AddComponent<PlayerTag>(player);
-            ecb.SetComponent(player, new LocalToWorld { Value = playerSpawner.GetSpawnPos() });
+            //ecb.SetComponent(player, new LocalToWorld { Value = playerSpawner.GetSpawnPos() });
 
             ecb.Playback(state.EntityManager);
         }

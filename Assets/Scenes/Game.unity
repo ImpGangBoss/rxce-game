@@ -1668,23 +1668,42 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   images:
-  - {image: {fileID: 21300000, guid: 78b367c04ad8c2f4ab596b75ceff14df, type: 3}, effect: 1, offset: {x: 0, y: 0, z: 0}}
-  - {image: {fileID: 21300000, guid: 8319948548cebb9429a3713aed1952a0, type: 3}, effect: 0.9, offset: {x: 0, y: 0, z: 0}}
-  - {image: {fileID: 21300000, guid: 30a76c71f035fde429baaa419036e935, type: 3}, effect: 0.8, offset: {x: 0, y: 0, z: 0}}
-  - {image: {fileID: 21300000, guid: 3a55cb41437ff7649a603e8233195993, type: 3}, effect: 0.7, offset: {x: 0, y: 0, z: 0}}
-  - {image: {fileID: 21300000, guid: 16464eeb781967c4eb40abe5ce4588c5, type: 3}, effect: 0.6, offset: {x: 0, y: 0, z: 0}}
-  - {image: {fileID: 21300000, guid: 54c5950618ad7c44298a2b03084b64d6, type: 3}, effect: 0.5, offset: {x: 0, y: 0, z: 0}}
-  - {image: {fileID: 21300000, guid: a232a2083fb6c204ebd0d94495256ba1, type: 3}, effect: 0.4, offset: {x: 0, y: 0, z: 0}}
-  - {image: {fileID: 21300000, guid: 9181b3ed3d7852f40bcc5eb4934fffbd, type: 3}, effect: 0.3, offset: {x: 0, y: 0, z: 0}}
-  - {image: {fileID: 21300000, guid: c0385f3330a569c4aa9d2e28cce5801b, type: 3}, effect: 0.2, offset: {x: 0, y: 0, z: 0}}
-  - {image: {fileID: 21300000, guid: 135dd0ec578870040bd1ce3606451c0d, type: 3}, effect: 0.15, offset: {x: 0, y: 0, z: 0}}
-  - {image: {fileID: 21300000, guid: 480b8a805f6af7f4f8fe3ce0771e49ea, type: 3}, effect: 1, offset: {x: 0, y: 0, z: 0}}
-  - {image: {fileID: 21300000, guid: 66491ff42e2a01545b17dfe48a752135, type: 3}, effect: 0.05, offset: {x: 0, y: -1, z: 0}}
-  _parallaxObjects: []
-  _startPos: []
-  _spriteSize: []
-  _spriteOffset: []
-  _mainCameraTransform: {fileID: 0}
+  - image: {fileID: 21300000, guid: 78b367c04ad8c2f4ab596b75ceff14df, type: 3}
+    effect: 1
+    offset: {x: 0, y: 0, z: 0}
+  - image: {fileID: 21300000, guid: 8319948548cebb9429a3713aed1952a0, type: 3}
+    effect: 0.9
+    offset: {x: 0, y: 0, z: 0}
+  - image: {fileID: 21300000, guid: 30a76c71f035fde429baaa419036e935, type: 3}
+    effect: 0.8
+    offset: {x: 0, y: 0, z: 0}
+  - image: {fileID: 21300000, guid: 3a55cb41437ff7649a603e8233195993, type: 3}
+    effect: 0.7
+    offset: {x: 0, y: 0, z: 0}
+  - image: {fileID: 21300000, guid: 16464eeb781967c4eb40abe5ce4588c5, type: 3}
+    effect: 0.6
+    offset: {x: 0, y: 0, z: 0}
+  - image: {fileID: 21300000, guid: 54c5950618ad7c44298a2b03084b64d6, type: 3}
+    effect: 0.5
+    offset: {x: 0, y: 0, z: 0}
+  - image: {fileID: 21300000, guid: a232a2083fb6c204ebd0d94495256ba1, type: 3}
+    effect: 0.4
+    offset: {x: 0, y: 0, z: 0}
+  - image: {fileID: 21300000, guid: 9181b3ed3d7852f40bcc5eb4934fffbd, type: 3}
+    effect: 0.3
+    offset: {x: 0, y: 0, z: 0}
+  - image: {fileID: 21300000, guid: c0385f3330a569c4aa9d2e28cce5801b, type: 3}
+    effect: 0.2
+    offset: {x: 0, y: 0, z: 0}
+  - image: {fileID: 21300000, guid: 135dd0ec578870040bd1ce3606451c0d, type: 3}
+    effect: 0.15
+    offset: {x: 0, y: 0, z: 0}
+  - image: {fileID: 21300000, guid: 480b8a805f6af7f4f8fe3ce0771e49ea, type: 3}
+    effect: 1
+    offset: {x: 0, y: 0, z: 0}
+  - image: {fileID: 21300000, guid: 66491ff42e2a01545b17dfe48a752135, type: 3}
+    effect: 0.05
+    offset: {x: 0, y: 0, z: 0}
 --- !u!210 &2047586514
 SortingGroup:
   m_ObjectHideFlags: 0
