@@ -4,12 +4,14 @@ using Unity.Jobs;
 using Unity.Burst;
 using Unity.Physics;
 using Unity.Physics.Systems;
+using System.Runtime.InteropServices;
 
 namespace RxceGame
 {
     [UpdateInGroup(typeof(FixedStepSimulationSystemGroup))]
     [UpdateAfter(typeof(PhysicsSystemGroup))]
     [BurstCompile]
+    [StructLayout(LayoutKind.Auto)]
     public partial struct WheelCollisionTrigger : ISystem
     {
         ComponentLookup<CarMoveParams> carParamsLookup;

@@ -1,8 +1,6 @@
 using Unity.Entities;
 using Unity.Burst;
 using Unity.Collections;
-using Unity.Transforms;
-using Unity.Physics.Aspects;
 
 namespace RxceGame
 {
