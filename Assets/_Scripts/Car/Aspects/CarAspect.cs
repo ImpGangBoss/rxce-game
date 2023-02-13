@@ -58,5 +58,7 @@ namespace RxceGame
 
         public void SetJumpTrigger(bool v) => moveParams.ValueRW.JumpTrigger = v;
         public Entity Entity() => entity;
+
+        public float3 Position() => rigidBodyAspect.Position;
     }
 }

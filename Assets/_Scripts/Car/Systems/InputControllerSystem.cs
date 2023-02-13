@@ -19,29 +19,26 @@ namespace RxceGame
         [BurstCompile]
         public void OnUpdate(ref SystemState state)
         {
+            var deltaTime = Time.deltaTime;
+
             foreach (var (playerCar, car) in
             SystemAPI.Query<PlayerTag, CarAspect>())
             {
+
                 if (Input.GetKey(KeyCode.Space))
-                {
-                    Debug.Log("Jump");
                     car.Jump();
-                }
+
+                if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
+                    car.AddAcceleration(deltaTime);
+
                 if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
-                {
-                    Debug.Log("Right");
-                    car.RotateBody(Time.deltaTime, true);
-                }
+                    car.RotateBody(deltaTime, true);
+
                 if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
-                {
-                    Debug.Log("Left");
-                    car.RotateBody(Time.deltaTime, false);
-                }
+                    car.RotateBody(deltaTime, false);
+
                 if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
-                {
-                    Debug.Log("Break");
-                    car.Brake(Time.deltaTime);
-                }
+                    car.Brake(deltaTime);
             }
         }
 

@@ -28,7 +28,6 @@ namespace RxceGame
 
             var player = ecb.Instantiate(playerSpawner.PlayerCarPrefab());
             ecb.AddComponent<PlayerTag>(player);
-            //ecb.SetComponent(player, new LocalToWorld { Value = playerSpawner.GetSpawnPos() });
 
             ecb.Playback(state.EntityManager);
         }

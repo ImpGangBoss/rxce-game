@@ -50,7 +50,6 @@ namespace RxceGame
 
     }
 
-    //[BurstCompile]
     public struct WheelHitJob : ICollisionEventsJob
     {
         public ComponentLookup<CarMoveParams> allCars;

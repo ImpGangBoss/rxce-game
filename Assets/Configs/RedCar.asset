@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: RedCar
   m_EditorClassIdentifier: 
   mass: 4
-  acceleration: 10
+  acceleration: 15
   maxSpeed: 50
   jumpImpulse: 5
   rotationSpeed: 10
