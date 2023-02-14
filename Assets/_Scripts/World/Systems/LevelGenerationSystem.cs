@@ -30,7 +30,7 @@ namespace RxceGame
 
             var random = SystemAPI.GetSingletonRW<RandomComponent>();
             var levelGenerator = SystemAPI.GetSingletonRW<LevelGeneratorComponent>();
-            var prefabsBuffer = SystemAPI.GetBuffer<GroundVariant>(levelGenerator.ValueRO.entity);
+            var prefabsBuffer = SystemAPI.GetBuffer<Prefab>(levelGenerator.ValueRO.entity);
             var ecb = new EntityCommandBuffer(Allocator.Temp);
 
             if (math.distance(playerPos, levelGenerator.ValueRO.prevSpawnPos) > levelGenerator.ValueRO.prefabSize.x * 2)

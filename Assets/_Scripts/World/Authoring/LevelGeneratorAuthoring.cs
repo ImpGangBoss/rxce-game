@@ -22,7 +22,7 @@ namespace RxceGame
     {
         public override void Bake(LevelGeneratorAuthoring authoring)
         {
-            DynamicBuffer<GroundVariant> groundEntities = AddBuffer<GroundVariant>();
+            DynamicBuffer<Prefab> groundEntities = AddBuffer<Prefab>();
             for (int i = 0; i < authoring.GroundPrefabs.Count; ++i)
                 groundEntities.Add(GetEntity(authoring.GroundPrefabs[i]));
 
