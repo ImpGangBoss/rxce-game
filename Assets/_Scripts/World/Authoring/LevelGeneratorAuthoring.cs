@@ -9,11 +9,13 @@ namespace RxceGame
         [SerializeField] private List<GameObject> groundPrefabs;
         [SerializeField] private Vector3 prefabZeroPos;
         [SerializeField] private Vector3 prefabZeroSize;
+        [SerializeField] private int prefabZeroIndex;
 
         public List<GameObject> GroundPrefabs { get => groundPrefabs; }
         public Vector3 PrefabZeroPos { get => prefabZeroPos; }
         public Vector3 PrefabZeroSize { get => prefabZeroSize; }
-        public GameObject GameObject { get => gameObject; }
+        public int PrefabZeroIndex { get => prefabZeroIndex; }
+        public GameObject LocalGameObject { get => gameObject; }
     }
 
     public class LevelGeneratorBaker : Baker<LevelGeneratorAuthoring>
@@ -26,9 +28,10 @@ namespace RxceGame
 
             AddComponent(new LevelGeneratorComponent
             {
-                entity = GetEntity(authoring.GameObject),
+                entity = GetEntity(authoring.LocalGameObject),
                 prevSpawnPos = authoring.PrefabZeroPos,
-                prefabSize = authoring.PrefabZeroSize
+                prefabSize = authoring.PrefabZeroSize,
+                prefabZeroIndex = authoring.PrefabZeroIndex
             });
         }
 

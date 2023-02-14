@@ -15,13 +15,13 @@ namespace RxceGame
     public partial struct WheelCollisionTrigger : ISystem
     {
         ComponentLookup<CarMoveParams> carParamsLookup;
-        ComponentLookup<GroundTag> groundLookup;
+        ComponentLookup<GroundComponent> groundLookup;
 
         [BurstCompile]
         public void OnCreate(ref SystemState state)
         {
             carParamsLookup = SystemAPI.GetComponentLookup<CarMoveParams>();
-            groundLookup = SystemAPI.GetComponentLookup<GroundTag>();
+            groundLookup = SystemAPI.GetComponentLookup<GroundComponent>();
         }
 
         [BurstCompile]
@@ -53,7 +53,7 @@ namespace RxceGame
     public struct WheelHitJob : ICollisionEventsJob
     {
         public ComponentLookup<CarMoveParams> allCars;
-        public ComponentLookup<GroundTag> allGround;
+        public ComponentLookup<GroundComponent> allGround;
         public EntityCommandBuffer ecb;
 
         public void Execute(CollisionEvent collisionEvent)
