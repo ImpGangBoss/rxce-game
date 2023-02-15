@@ -316,4 +316,4 @@ MonoBehaviour:
   - {fileID: 7626729014028592725, guid: 6c9a0835ed5ebda43bb5ee699b468598, type: 3}
   - {fileID: 8002592779965282469, guid: 5b0528077c654c349beeb0edfbaedb59, type: 3}
   spawnOffset: {x: 20, y: 10, z: 0}
-  spawnRate: 0.15
+  spawnRate: 0.25
