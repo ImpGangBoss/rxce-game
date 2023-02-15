@@ -1,4 +1,4 @@
-using System.Collections;
+using UnityEngine.SceneManagement;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
@@ -19,6 +19,7 @@ namespace RxceGame
         [SerializeField] private TextMeshProUGUI brake;
 
         private int currentCarIndex = 0;
+        private string carKey = "Car";
 
         private void Start()
         {
@@ -61,6 +62,12 @@ namespace RxceGame
 
             currentCar.prefab.SetActive(true);
             SetTextValues(currentCar.data, currentCar.name);
+        }
+
+        public void OnSelect()
+        {
+            PlayerPrefs.SetInt(carKey, currentCarIndex);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
     }
 }

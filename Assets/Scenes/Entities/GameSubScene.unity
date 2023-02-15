@@ -167,8 +167,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d757c0bbbf2226d4b975a62229ad6fda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerCarPrefab: {fileID: 3370102584180055445, guid: 18180f4feb502d94d96bd26ae7534734, type: 3}
   spawnPos: {fileID: 384844245}
+  cars:
+  - {fileID: 3370102584180055445, guid: 18180f4feb502d94d96bd26ae7534734, type: 3}
+  - {fileID: 3370102584180055445, guid: b44b5a3bcbd7fd140b775ffddd929727, type: 3}
+  - {fileID: 341950920245004760, guid: ac14e664aecbf3542afdbff3b0a7af08, type: 3}
+  - {fileID: 7149563806134635225, guid: 9851ce6b8cc7cf84580f8ed7dae5712b, type: 3}
 --- !u!1 &697203725
 GameObject:
   m_ObjectHideFlags: 0
