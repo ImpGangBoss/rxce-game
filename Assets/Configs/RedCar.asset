@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mass: 4
   acceleration: 15
-  maxSpeed: 50
+  maxSpeed: 20
   jumpImpulse: 5
   rotationSpeed: 10
   brakeSpeed: 2

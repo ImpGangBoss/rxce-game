@@ -1,4 +1,3 @@
-using UnityEngine.SceneManagement;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
@@ -67,7 +66,7 @@ namespace RxceGame
         public void OnSelect()
         {
             PlayerPrefs.SetInt(carKey, currentCarIndex);
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            SceneLoader.Instance.LoadGame();
         }
     }
 }

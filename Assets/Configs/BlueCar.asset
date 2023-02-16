@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: BlueCar
   m_EditorClassIdentifier: 
   mass: 5
-  acceleration: 7
+  acceleration: 15
   maxSpeed: 18
   jumpImpulse: 20
   rotationSpeed: 6

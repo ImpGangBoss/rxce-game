@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: MonsterCar
   m_EditorClassIdentifier: 
   mass: 7
-  acceleration: 5
-  maxSpeed: 20
-  jumpImpulse: 30
+  acceleration: 20
+  maxSpeed: 40
+  jumpImpulse: 10
   rotationSpeed: 10
   brakeSpeed: 5
