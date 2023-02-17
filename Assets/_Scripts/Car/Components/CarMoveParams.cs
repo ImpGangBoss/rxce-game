@@ -5,6 +5,7 @@ namespace RxceGame
     public struct CarMoveParams : IComponentData
     {
         public bool initialized;
+        public float hp;
         public float mass;
         public float acceleration;
         public float maxSpeed;

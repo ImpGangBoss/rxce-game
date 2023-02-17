@@ -6,6 +6,7 @@ namespace RxceGame
     [System.Serializable]
     public class MoveParamsData : ScriptableObject
     {
+        [SerializeField] float hp;
         [SerializeField] float mass;
         [SerializeField] float acceleration;
         [SerializeField] float maxSpeed;
@@ -19,5 +20,6 @@ namespace RxceGame
         public float JumpImpulse { get => jumpImpulse; }
         public float RotationSpeed { get => rotationSpeed; }
         public float BrakeSpeed { get => brakeSpeed; }
+        public float HP { get => hp; }
     }
 }

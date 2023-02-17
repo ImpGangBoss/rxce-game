@@ -5,6 +5,7 @@ using Unity.Collections;
 
 namespace RxceGame
 {
+    [UpdateInGroup(typeof(InitializationSystemGroup))]
     [BurstCompile]
     public partial struct LevelGenerationSystem : ISystem
     {

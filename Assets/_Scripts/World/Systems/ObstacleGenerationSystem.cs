@@ -5,6 +5,8 @@ using Unity.Collections;
 
 namespace RxceGame
 {
+    [UpdateInGroup(typeof(InitializationSystemGroup))]
+    [UpdateAfter(typeof(LevelGenerationSystem))]
     [BurstCompile]
     public partial struct ObstacleGenerationSystem : ISystem
     {

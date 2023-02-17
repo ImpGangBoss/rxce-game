@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c892074a75a331745aafbe63be2a4740, type: 3}
   m_Name: SportCar
   m_EditorClassIdentifier: 
+  hp: 100
   mass: 2
   acceleration: 15
   maxSpeed: 20

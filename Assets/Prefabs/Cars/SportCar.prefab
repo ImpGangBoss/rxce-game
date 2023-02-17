@@ -184,9 +184,9 @@ MonoBehaviour:
     m_CollidesWithCategories:
       m_Override: 0
       m_Value:
-        Category00: 1
-        Category01: 1
-        Category02: 1
+        Category00: 0
+        Category01: 0
+        Category02: 0
         Category03: 1
         Category04: 1
         Category05: 1
@@ -425,9 +425,9 @@ MonoBehaviour:
     m_CollidesWithCategories:
       m_Override: 0
       m_Value:
-        Category00: 1
-        Category01: 1
-        Category02: 1
+        Category00: 0
+        Category01: 0
+        Category02: 0
         Category03: 1
         Category04: 1
         Category05: 1
@@ -492,6 +492,7 @@ GameObject:
   m_Component:
   - component: {fileID: 341950920005760230}
   - component: {fileID: 341950920005760231}
+  - component: {fileID: 121488181709711392}
   m_Layer: 6
   m_Name: DamageTrigger
   m_TagString: Untagged
@@ -563,7 +564,7 @@ MonoBehaviour:
     m_Template: {fileID: 0}
     m_CollisionResponse:
       m_Override: 0
-      m_Value: 0
+      m_Value: 3
     m_Friction:
       m_Override: 0
       m_Value:
@@ -577,8 +578,8 @@ MonoBehaviour:
     m_BelongsToCategories:
       m_Override: 0
       m_Value:
-        Category00: 1
-        Category01: 0
+        Category00: 0
+        Category01: 1
         Category02: 0
         Category03: 0
         Category04: 0
@@ -657,6 +658,18 @@ MonoBehaviour:
         Tag07: 0
     m_SerializedVersion: 1
   m_SerializedVersion: 1
+--- !u!114 &121488181709711392
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 341950920005760229}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf5ced2ced8c6a042bc20c6599ea2c05, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &341950920245004760
 GameObject:
   m_ObjectHideFlags: 0
@@ -693,7 +706,7 @@ Transform:
   - {fileID: 341950919251494835}
   - {fileID: 341950920005760230}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &341950920245004761
 SpriteRenderer:

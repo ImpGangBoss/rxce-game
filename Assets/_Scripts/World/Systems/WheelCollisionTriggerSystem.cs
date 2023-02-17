@@ -5,6 +5,7 @@ using Unity.Burst;
 using Unity.Physics;
 using Unity.Physics.Systems;
 using System.Runtime.InteropServices;
+using Unity.Transforms;
 
 namespace RxceGame
 {
@@ -12,15 +13,15 @@ namespace RxceGame
     [UpdateAfter(typeof(PhysicsSystemGroup))]
     [BurstCompile]
     [StructLayout(LayoutKind.Auto)]
-    public partial struct WheelCollisionTrigger : ISystem
+    public partial struct WheelCollisionTriggerSystem : ISystem
     {
-        ComponentLookup<CarMoveParams> carParamsLookup;
+        ComponentLookup<WheelTag> wheelsLookup;
         ComponentLookup<GroundComponent> groundLookup;
 
         [BurstCompile]
         public void OnCreate(ref SystemState state)
         {
-            carParamsLookup = SystemAPI.GetComponentLookup<CarMoveParams>();
+            wheelsLookup = SystemAPI.GetComponentLookup<WheelTag>();
             groundLookup = SystemAPI.GetComponentLookup<GroundComponent>();
         }
 
@@ -37,49 +38,50 @@ namespace RxceGame
 
             SimulationSingleton simulation = SystemAPI.GetSingleton<SimulationSingleton>();
 
-            carParamsLookup.Update(ref state);
+            wheelsLookup.Update(ref state);
             groundLookup.Update(ref state);
 
             state.Dependency = new WheelHitJob()
             {
-                allCars = carParamsLookup,
+                allWheels = wheelsLookup,
                 allGround = groundLookup,
                 ecb = ecbBS
             }.Schedule(simulation, state.Dependency);
         }
-
     }
 
     public struct WheelHitJob : ICollisionEventsJob
     {
-        public ComponentLookup<CarMoveParams> allCars;
+        public ComponentLookup<WheelTag> allWheels;
         public ComponentLookup<GroundComponent> allGround;
         public EntityCommandBuffer ecb;
 
         public void Execute(CollisionEvent collisionEvent)
         {
-            Entity car = Entity.Null;
+            Entity wheel = Entity.Null;
             Entity ground = Entity.Null;
 
             if (allGround.HasComponent(collisionEvent.EntityA))
                 ground = collisionEvent.EntityA;
             if (allGround.HasComponent(collisionEvent.EntityB))
                 ground = collisionEvent.EntityB;
-            if (allCars.HasComponent(collisionEvent.EntityA))
-                car = collisionEvent.EntityA;
-            if (allCars.HasComponent(collisionEvent.EntityB))
-                car = collisionEvent.EntityB;
 
-            // if its a pair of entity we don't want to process, exit
-            if (Entity.Null.Equals(ground) || Entity.Null.Equals(car))
+            if (allWheels.HasComponent(collisionEvent.EntityA))
+                wheel = collisionEvent.EntityA;
+            if (allWheels.HasComponent(collisionEvent.EntityB))
+                wheel = collisionEvent.EntityB;
+
+            if (Entity.Null.Equals(ground) || Entity.Null.Equals(wheel))
             {
                 Debug.Log("Something else");
+                Debug.Log("Ground: " + Entity.Null.Equals(ground));
+                Debug.Log("Wheel: " + Entity.Null.Equals(wheel));
                 return;
             }
 
-            var currCarParam = allCars[car];
-            currCarParam.JumpTrigger = true;
-            ecb.SetComponent(car, currCarParam);
+            var car = SystemAPI.GetComponent<PreviousParent>(wheel);
+            var carAspect = SystemAPI.GetAspectRW<CarAspect>(car.Value);
+            carAspect.SetJumpTrigger(true);
         }
     }
 }

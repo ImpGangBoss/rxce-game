@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using Unity.Entities;
 using UnityEngine;
 
@@ -18,6 +16,7 @@ namespace RxceGame
         {
             AddComponent(new CarMoveParams
             {
+                hp = authoring.CarConfig.HP,
                 mass = authoring.CarConfig.Mass,
                 acceleration = authoring.CarConfig.Acceleration,
                 maxSpeed = authoring.CarConfig.MaxSpeed,

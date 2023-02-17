@@ -4,6 +4,8 @@ using Unity.Mathematics;
 
 namespace RxceGame
 {
+    [UpdateInGroup(typeof(InitializationSystemGroup))]
+    [UpdateAfter(typeof(ObstacleGenerationSystem))]
     [BurstCompile]
     public partial struct ObstaclePlaceSystem : ISystem
     {

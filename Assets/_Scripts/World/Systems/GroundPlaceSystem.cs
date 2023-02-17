@@ -3,6 +3,8 @@ using Unity.Burst;
 
 namespace RxceGame
 {
+    [UpdateInGroup(typeof(InitializationSystemGroup))]
+    [UpdateAfter(typeof(LevelGenerationSystem))]
     [BurstCompile]
     public partial struct GroundPlaceSystem : ISystem
     {

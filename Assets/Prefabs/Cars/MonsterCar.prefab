@@ -184,9 +184,9 @@ MonoBehaviour:
     m_CollidesWithCategories:
       m_Override: 0
       m_Value:
-        Category00: 1
-        Category01: 1
-        Category02: 1
+        Category00: 0
+        Category01: 0
+        Category02: 0
         Category03: 1
         Category04: 1
         Category05: 1
@@ -425,9 +425,9 @@ MonoBehaviour:
     m_CollidesWithCategories:
       m_Override: 0
       m_Value:
-        Category00: 1
-        Category01: 1
-        Category02: 1
+        Category00: 0
+        Category01: 0
+        Category02: 0
         Category03: 1
         Category04: 1
         Category05: 1
@@ -492,6 +492,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7149563805905254375}
   - component: {fileID: 7149563805905254374}
+  - component: {fileID: 613225822885428534}
   m_Layer: 6
   m_Name: DamageTrigger
   m_TagString: Untagged
@@ -563,7 +564,7 @@ MonoBehaviour:
     m_Template: {fileID: 0}
     m_CollisionResponse:
       m_Override: 0
-      m_Value: 1
+      m_Value: 3
     m_Friction:
       m_Override: 0
       m_Value:
@@ -657,6 +658,18 @@ MonoBehaviour:
         Tag07: 0
     m_SerializedVersion: 1
   m_SerializedVersion: 1
+--- !u!114 &613225822885428534
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7149563805905254372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf5ced2ced8c6a042bc20c6599ea2c05, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7149563806134635225
 GameObject:
   m_ObjectHideFlags: 0
@@ -693,7 +706,7 @@ Transform:
   - {fileID: 7149563805417981106}
   - {fileID: 7149563805905254375}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &7149563806134635224
 SpriteRenderer:

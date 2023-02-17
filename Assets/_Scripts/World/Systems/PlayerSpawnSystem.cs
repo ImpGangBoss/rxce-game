@@ -19,13 +19,12 @@ namespace RxceGame
         [BurstCompile]
         public void OnDestroy(ref SystemState state) { }
 
-        [BurstCompile]
         public void OnUpdate(ref SystemState state)
         {
             state.Enabled = false;
             var carHolder = SystemAPI.GetSingletonEntity<CarPrefabsHolderComponent>();
             var prefabs = SystemAPI.GetBuffer<Prefab>(carHolder);
-            var carIndex = PlayerPrefs.GetInt("Car");
+            var carIndex = PlayerPrefs.GetInt("Car", 0);
 
             var ecb = new EntityCommandBuffer(Allocator.Temp);
 

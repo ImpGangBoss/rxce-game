@@ -1,3 +1,4 @@
+using UnityEngine;
 using Unity.Entities;
 using Unity.Mathematics;
 using Unity.Physics;
@@ -57,8 +58,15 @@ namespace RxceGame
         }
 
         public void SetJumpTrigger(bool v) => _moveParams.ValueRW.JumpTrigger = v;
+
         public Entity Entity() => _entity;
 
         public float3 Position() => _rigidBodyAspect.Position;
+
+        public void TakeDamage(float v)
+        {
+            _moveParams.ValueRW.hp -= v;
+            Debug.Log("Dame taken: " + v);
+        }
     }
 }
