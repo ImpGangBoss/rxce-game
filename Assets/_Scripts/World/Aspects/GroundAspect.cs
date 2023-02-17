@@ -1,6 +1,5 @@
 using Unity.Entities;
 using Unity.Transforms;
-using Unity.Physics.Aspects;
 
 namespace RxceGame
 {

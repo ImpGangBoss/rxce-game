@@ -9,56 +9,56 @@ namespace RxceGame
 {
     public readonly partial struct CarAspect : IAspect
     {
-        readonly Entity entity;
-        readonly TransformAspect transformAspect;
-        readonly RigidBodyAspect rigidBodyAspect;
-        readonly RefRW<CarMoveParams> moveParams;
-        readonly RefRW<PhysicsVelocity> velocity;
-        readonly RefRW<PhysicsMass> mass;
+        readonly Entity _entity;
+        readonly TransformAspect _transformAspect;
+        readonly RigidBodyAspect _rigidBodyAspect;
+        readonly RefRW<CarMoveParams> _moveParams;
+        readonly RefRW<PhysicsVelocity> _velocity;
+        readonly RefRW<PhysicsMass> _mass;
 
         public void SetCarParamsOnStart(float3 spawnPos)
         {
-            if (!moveParams.ValueRO.initialized)
+            if (!_moveParams.ValueRO.initialized)
             {
-                rigidBodyAspect.Mass = moveParams.ValueRW.mass;
-                moveParams.ValueRW.JumpTrigger = false;
-                rigidBodyAspect.Position = spawnPos;
-                moveParams.ValueRW.initialized = true;
+                _rigidBodyAspect.Mass = _moveParams.ValueRW.mass;
+                _moveParams.ValueRW.JumpTrigger = false;
+                _rigidBodyAspect.Position = spawnPos;
+                _moveParams.ValueRW.initialized = true;
             }
         }
 
         public void AddAcceleration(float deltaTime)
         {
-            if (velocity.ValueRO.Linear.x < moveParams.ValueRO.maxSpeed)
+            if (_velocity.ValueRO.Linear.x < _moveParams.ValueRO.maxSpeed)
             {
-                rigidBodyAspect.ApplyLinearImpulseWorldSpace(new float3(moveParams.ValueRO.acceleration * deltaTime, 0f, 0f));
+                _rigidBodyAspect.ApplyLinearImpulseWorldSpace(new float3(_moveParams.ValueRO.acceleration * deltaTime, 0f, 0f));
             }
         }
 
         public void Jump()
         {
-            if (moveParams.ValueRO.JumpTrigger)
+            if (_moveParams.ValueRO.JumpTrigger)
             {
-                velocity.ValueRW.ApplyLinearImpulse(mass.ValueRO, new float3(0, moveParams.ValueRO.jumpImpulse, 0));
-                moveParams.ValueRW.JumpTrigger = false;
+                _velocity.ValueRW.ApplyLinearImpulse(_mass.ValueRO, new float3(0, _moveParams.ValueRO.jumpImpulse, 0));
+                _moveParams.ValueRW.JumpTrigger = false;
             }
         }
 
         public void RotateBody(float deltaTime, bool forward)
         {
-            var prevRot = rigidBodyAspect.Rotation.value;
+            var prevRot = _rigidBodyAspect.Rotation.value;
             float sign = forward ? -1f : 1f;
-            rigidBodyAspect.ApplyImpulseAtPointLocalSpace(new float3(0f, deltaTime * moveParams.ValueRO.rotationSpeed, 0f), new float3(sign, 0f, 0f));
+            _rigidBodyAspect.ApplyImpulseAtPointLocalSpace(new float3(0f, deltaTime * _moveParams.ValueRO.rotationSpeed, 0f), new float3(sign, 0f, 0f));
         }
 
         public void Brake(float deltaTime)
         {
-            velocity.ValueRW.Linear *= (1f - deltaTime * moveParams.ValueRO.brakeSpeed);
+            _velocity.ValueRW.Linear *= (1f - deltaTime * _moveParams.ValueRO.brakeSpeed);
         }
 
-        public void SetJumpTrigger(bool v) => moveParams.ValueRW.JumpTrigger = v;
-        public Entity Entity() => entity;
+        public void SetJumpTrigger(bool v) => _moveParams.ValueRW.JumpTrigger = v;
+        public Entity Entity() => _entity;
 
-        public float3 Position() => rigidBodyAspect.Position;
+        public float3 Position() => _rigidBodyAspect.Position;
     }
 }

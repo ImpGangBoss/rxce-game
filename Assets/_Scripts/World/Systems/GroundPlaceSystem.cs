@@ -1,7 +1,5 @@
 using Unity.Entities;
-using Unity.Mathematics;
 using Unity.Burst;
-using Unity.Transforms;
 
 namespace RxceGame
 {
