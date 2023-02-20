@@ -16,6 +16,7 @@ namespace RxceGame
         readonly RefRW<CarMoveParams> _moveParams;
         readonly RefRW<PhysicsVelocity> _velocity;
         readonly RefRW<PhysicsMass> _mass;
+        readonly RefRW<PhysicsCollider> _collider;
 
         public void SetCarParamsOnStart(float3 spawnPos)
         {
@@ -38,11 +39,11 @@ namespace RxceGame
 
         public void Jump()
         {
-            if (_moveParams.ValueRO.JumpTrigger)
-            {
-                _velocity.ValueRW.ApplyLinearImpulse(_mass.ValueRO, new float3(0, _moveParams.ValueRO.jumpImpulse, 0));
-                _moveParams.ValueRW.JumpTrigger = false;
-            }
+            if (!_moveParams.ValueRO.JumpTrigger)
+                return;
+
+            _velocity.ValueRW.ApplyLinearImpulse(_mass.ValueRO, new float3(0, _moveParams.ValueRO.jumpImpulse, 0));
+            _moveParams.ValueRW.JumpTrigger = false;
         }
 
         public void RotateBody(float deltaTime, bool forward)
@@ -54,14 +55,20 @@ namespace RxceGame
 
         public void Brake(float deltaTime)
         {
+            if (!_moveParams.ValueRO.JumpTrigger)
+                return;
+
             _velocity.ValueRW.Linear *= (1f - deltaTime * _moveParams.ValueRO.brakeSpeed);
         }
 
         public void SetJumpTrigger(bool v) => _moveParams.ValueRW.JumpTrigger = v;
+        public void SetDamageTrigger(bool v) => _moveParams.ValueRW.DamageTrigger = v;
 
         public Entity Entity() => _entity;
 
         public float3 Position() => _rigidBodyAspect.Position;
+
+        public CarMoveParams GetMoveParams() => _moveParams.ValueRW;
 
         public void TakeDamage(float v)
         {

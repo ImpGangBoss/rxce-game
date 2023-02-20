@@ -57,7 +57,6 @@ namespace RxceGame
 
             ecb.SetComponent(newGround, new GroundComponent { pos = spawnPos });
             ecb.Playback(state.EntityManager);
-
         }
     }
 }

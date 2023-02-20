@@ -18,10 +18,13 @@ namespace RxceGame
         [BurstCompile]
         public void OnDestroy(ref SystemState state) { }
 
-        [BurstCompile]
+        //[BurstCompile]
         public void OnUpdate(ref SystemState state)
         {
             state.Enabled = false;
+
+            var ecb = SystemAPI.GetSingleton<BeginSimulationEntityCommandBufferSystem.Singleton>().CreateCommandBuffer(state.WorldUnmanaged);
+
             foreach (var car in SystemAPI.Query<CarAspect>())
             {
                 //TODO: change to real position
@@ -31,6 +34,5 @@ namespace RxceGame
                 car.SetCarParamsOnStart(spawnPos);
             }
         }
-
     }
 }

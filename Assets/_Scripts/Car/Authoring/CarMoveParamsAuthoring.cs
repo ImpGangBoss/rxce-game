@@ -8,6 +8,7 @@ namespace RxceGame
         [SerializeField] private MoveParamsData carConfig;
 
         public MoveParamsData CarConfig { get => carConfig; }
+        public GameObject GameObject { get => gameObject; }
     }
 
     public class SpeedBaker : Baker<CarMoveParamsAuthoring>
@@ -16,6 +17,7 @@ namespace RxceGame
         {
             AddComponent(new CarMoveParams
             {
+                entity = GetEntity(authoring.gameObject),
                 hp = authoring.CarConfig.HP,
                 mass = authoring.CarConfig.Mass,
                 acceleration = authoring.CarConfig.Acceleration,

@@ -16,13 +16,11 @@ namespace RxceGame
     public partial struct DamageTriggerSystem : ISystem
     {
         ComponentLookup<DamageTriggerTag> damageTriggerLookup;
-        ComponentLookup<CarMoveParams> carsLookup;
 
         [BurstCompile]
         public void OnCreate(ref SystemState state)
         {
             damageTriggerLookup = SystemAPI.GetComponentLookup<DamageTriggerTag>();
-            carsLookup = SystemAPI.GetComponentLookup<CarMoveParams>();
         }
 
         [BurstCompile]
@@ -36,44 +34,46 @@ namespace RxceGame
             SimulationSingleton simulation = SystemAPI.GetSingleton<SimulationSingleton>();
 
             damageTriggerLookup.Update(ref state);
-            carsLookup.Update(ref state);
 
-            state.Dependency = new DamageTriggerHitJob()
+            foreach (var carAspect in SystemAPI.Query<CarAspect>())
             {
-                allCars = carsLookup,
-                allTriggers = damageTriggerLookup,
-                ecb = ecbBS
-            }.Schedule(simulation, state.Dependency);
+                state.Dependency = new DamageTriggerHitJob()
+                {
+                    // allTriggers = damageTriggerLookup,
+                    // car = carAspect.GetMoveParams(),
+                    // ecb = ecbBS
+                }.Schedule(simulation, state.Dependency);
+            }
         }
     }
 
     public struct DamageTriggerHitJob : ITriggerEventsJob
     {
-        public ComponentLookup<DamageTriggerTag> allTriggers;
-        public ComponentLookup<CarMoveParams> allCars;
-        public EntityCommandBuffer ecb;
+        //TODO: Write something that works
+        // public ComponentLookup<DamageTriggerTag> allTriggers;
+        // public CarMoveParams car;
+        // public EntityCommandBuffer ecb;
         public void Execute(TriggerEvent triggerEvent)
         {
-            Debug.Log(triggerEvent.ColliderKeyA.Value);
-            Debug.Log(triggerEvent.ColliderKeyB.Value);
+            //     Entity trigger = Entity.Null;
 
-            Entity trigger = Entity.Null;
+            //     if (allTriggers.HasComponent(triggerEvent.EntityA))
+            //         trigger = triggerEvent.EntityA;
 
-            if (allTriggers.HasComponent(triggerEvent.EntityA))
-                trigger = triggerEvent.EntityA;
+            //     if (allTriggers.HasComponent(triggerEvent.EntityB))
+            //         trigger = triggerEvent.EntityB;
 
-            if (allTriggers.HasComponent(triggerEvent.EntityB))
-                trigger = triggerEvent.EntityB;
+            //     if (Entity.Null.Equals(trigger))
+            //     {
+            //         Debug.Log("Trigger: " + Entity.Null.Equals(trigger));
+            //         return;
+            //     }
 
-            if (Entity.Null.Equals(trigger))
-            {
-                Debug.Log("Wrong trigger");
-                return;
-            }
+            //     Debug.Log("Triggered");
 
-            var car = SystemAPI.GetComponent<PreviousParent>(trigger);
-            var carAspect = SystemAPI.GetAspectRW<CarAspect>(car.Value);
-            carAspect.TakeDamage(Time.deltaTime);
+            //     car.DamageTrigger = true;
+            //     ecb.SetComponent(car.entity, car);
+
         }
     }
 }
