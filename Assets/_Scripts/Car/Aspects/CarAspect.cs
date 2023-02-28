@@ -31,10 +31,10 @@ namespace RxceGame
 
         public void AddAcceleration(float deltaTime)
         {
-            if (_velocity.ValueRO.Linear.x < _moveParams.ValueRO.maxSpeed)
-            {
-                _rigidBodyAspect.ApplyLinearImpulseWorldSpace(new float3(_moveParams.ValueRO.acceleration * deltaTime, 0f, 0f));
-            }
+            if (!_moveParams.ValueRO.JumpTrigger || _velocity.ValueRO.Linear.x >= _moveParams.ValueRO.maxSpeed)
+                return;
+
+            _rigidBodyAspect.ApplyLinearImpulseWorldSpace(new float3(_moveParams.ValueRO.acceleration * deltaTime, 0f, 0f));
         }
 
         public void Jump()
@@ -55,7 +55,7 @@ namespace RxceGame
 
         public void Brake(float deltaTime)
         {
-            if (!_moveParams.ValueRO.JumpTrigger)
+            if (_moveParams.ValueRO.JumpTrigger)
                 return;
 
             _velocity.ValueRW.Linear *= (1f - deltaTime * _moveParams.ValueRO.brakeSpeed);
