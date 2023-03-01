@@ -39,6 +39,9 @@ namespace RxceGame
 
                 if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
                     car.Brake(deltaTime);
+
+                if (car.GetDamageTrigger())
+                    car.TakeDamage(1f);
             }
         }
 

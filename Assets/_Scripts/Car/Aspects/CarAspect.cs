@@ -63,10 +63,12 @@ namespace RxceGame
 
         public void SetJumpTrigger(bool v) => _moveParams.ValueRW.JumpTrigger = v;
         public void SetDamageTrigger(bool v) => _moveParams.ValueRW.DamageTrigger = v;
+        public bool GetDamageTrigger() => _moveParams.ValueRW.DamageTrigger;
 
         public Entity Entity() => _entity;
 
         public float3 Position() => _rigidBodyAspect.Position;
+        public quaternion Rotation() => _rigidBodyAspect.Rotation;
 
         public CarMoveParams GetMoveParams() => _moveParams.ValueRW;
 
@@ -74,6 +76,11 @@ namespace RxceGame
         {
             _moveParams.ValueRW.hp -= v;
             Debug.Log("Dame taken: " + v);
+            if (_moveParams.ValueRW.hp <= 0)
+            {
+                Debug.LogError("Dead");
+            }
+            _moveParams.ValueRW.DamageTrigger = false;
         }
     }
 }
