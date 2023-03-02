@@ -82,5 +82,16 @@ namespace RxceGame
             }
             _moveParams.ValueRW.DamageTrigger = false;
         }
+
+        public float3 RotatePoint(float3 point, float3 pivot, float radians)
+        {
+            var cosTheta = math.cos(radians);
+            var sinTheta = math.sin(radians);
+
+            var x = (cosTheta * (point.x - pivot.y) - sinTheta * (point.y - pivot.y) + pivot.x);
+            var y = (sinTheta * (point.x - pivot.x) + cosTheta * (point.y - pivot.y) + pivot.y);
+
+            return new float3(x, y, 0f);
+        }
     }
 }

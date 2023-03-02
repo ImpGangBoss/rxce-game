@@ -37,15 +37,18 @@ namespace RxceGame
                     // wheel detection
                     if (SystemAPI.HasComponent<WheelTag>(child.Value))
                     {
-                        var wheelTransform = SystemAPI.GetAspectRW<TransformAspect>(child.Value);
+                        var wheelTransform = SystemAPI.GetComponent<LocalToWorld>(child.Value);
                         var length = 0.35f;
-                        var start = wheelTransform.LocalPosition + carAspect.Position();
-                        start = math.rotate(carAspect.Rotation(), start);
+                        var start = wheelTransform.Position;
 
-                        int raysToShoot = 5;
-                        float startAngle = 0.5f * math.PI;
-                        float endAngle = 1.5f * math.PI;
-                        float deltaAngle = (endAngle - startAngle) / (raysToShoot - 1);
+                        int raysToShoot = 10;
+                        float qw = wheelTransform.Rotation.value.w;
+                        float qz = wheelTransform.Rotation.value.z;
+                        float direction = -math.clamp(qz / math.sqrt(1 - qw * qw), -1f, 1f);
+                        float angleOffset = 2 * math.acos(qw) * direction;
+                        float startAngle = 0 + angleOffset;
+                        float endAngle = 2 * math.PI + angleOffset;
+                        float deltaAngle = (endAngle - startAngle) / raysToShoot;
 
                         for (int i = 0; i < raysToShoot; i++)
                         {
@@ -53,7 +56,7 @@ namespace RxceGame
                             float y = math.cos(startAngle);
                             startAngle += deltaAngle;
 
-                            var ray = new float3(x * length, y * length, 0);
+                            var ray = new float3(x * length, y * length, 0f);
                             var end = start + ray;
 
                             Debug.DrawLine(start, end, Color.red);
@@ -93,57 +96,49 @@ namespace RxceGame
                     // damage trigger detection
                     if (SystemAPI.HasComponent<DamageTriggerTag>(child.Value))
                     {
-                        var damageTrigger = SystemAPI.GetAspectRW<TransformAspect>(child.Value);
-                        var length = 0.35f;
-                        var start = damageTrigger.LocalPosition + carAspect.Position();
-                        start = math.rotate(carAspect.Rotation(), start);
+                        var damageTrigger = SystemAPI.GetComponent<LocalToWorld>(child.Value);
+                        var length = 1.5f;
+                        var start = damageTrigger.Position;
 
-                        int raysToShoot = 5;
-                        float startAngle = 1.5f * math.PI;
-                        float endAngle = 2.5f * math.PI;
-                        float deltaAngle = (endAngle - startAngle) / (raysToShoot - 1);
+                        var qw = damageTrigger.Rotation.value.w;
+                        var qz = damageTrigger.Rotation.value.z;
+                        float direction = -math.clamp(qz / math.sqrt(1 - qw * qw), -1f, 1f);
+                        float angleOffset = 2 * math.acos(qw) * direction;
+                        float startAngle = angleOffset;
+                        float endAngle = angleOffset;
 
-                        for (int i = 0; i < raysToShoot; i++)
+                        float x = math.sin(startAngle);
+                        float y = math.cos(startAngle);
+
+                        var ray = new float3(x * length, y, 0f);
+                        start += new float3(-length * 0.5f, 0f, 0f);
+                        var end = start + ray + new float3(length * 0.5f, 0f, 0f);
+
+                        Debug.DrawLine(start, end, Color.black);
+
+                        RaycastInput input = new()
                         {
-                            float x = math.sin(startAngle);
-                            float y = math.cos(startAngle);
-                            startAngle += deltaAngle;
-
-                            var ray = new float3(x * length, y * length, 0);
-                            var end = start + ray;
-
-                            Debug.DrawLine(start, end, Color.black);
-
-                            RaycastInput input = new()
+                            Start = start,
+                            End = end,
+                            Filter = new CollisionFilter()
                             {
-                                Start = start,
-                                End = end,
-                                Filter = new CollisionFilter()
-                                {
-                                    // 0 -- car body
-                                    // 1 -- damage trigger
-                                    // 2 -- wheels
-                                    // 3 -- ground
-                                    // 4 -- obstacles
-
-                                    BelongsTo = 1 << 0,
-                                    CollidesWith = ~0u,
-                                    GroupIndex = 0
-                                }
-                            };
-
-                            Unity.Physics.RaycastHit hit = new();
-                            bool haveHit = collisionWorld.CastRay(input, out hit);
-                            Entity target = Entity.Null;
-
-                            if (haveHit)
-                            {
-                                target = hit.Entity;
-
-                                if (SystemAPI.HasComponent<GroundComponent>(target)
-                                || SystemAPI.HasComponent<ObstacleComponent>(target))
-                                    carAspect.SetDamageTrigger(true);
+                                BelongsTo = ~0u,
+                                CollidesWith = (1 << 3) | (1 << 4),
+                                GroupIndex = 0
                             }
+                        };
+
+                        Unity.Physics.RaycastHit hit = new();
+                        bool haveHit = collisionWorld.CastRay(input, out hit);
+                        Entity target = Entity.Null;
+
+                        if (haveHit)
+                        {
+                            target = hit.Entity;
+
+                            if (SystemAPI.HasComponent<GroundComponent>(target)
+                            || SystemAPI.HasComponent<ObstacleComponent>(target))
+                                carAspect.SetDamageTrigger(true);
                         }
                     }
                 }
