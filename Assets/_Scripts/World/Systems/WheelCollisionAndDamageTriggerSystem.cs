@@ -103,16 +103,15 @@ namespace RxceGame
                         var qw = damageTrigger.Rotation.value.w;
                         var qz = damageTrigger.Rotation.value.z;
                         float direction = -math.clamp(qz / math.sqrt(1 - qw * qw), -1f, 1f);
-                        float angleOffset = 2 * math.acos(qw) * direction;
-                        float startAngle = angleOffset;
-                        float endAngle = angleOffset;
+                        float angleOffset = 2 * math.acos(qw) * direction + math.radians(90);
 
-                        float x = math.sin(startAngle);
-                        float y = math.cos(startAngle);
+                        float x = math.sin(angleOffset);
+                        float y = math.cos(angleOffset);
 
-                        var ray = new float3(x * length, y, 0f);
-                        start += new float3(-length * 0.5f, 0f, 0f);
-                        var end = start + ray + new float3(length * 0.5f, 0f, 0f);
+                        var ray = new float3(x * length, y * length, 0f);
+                        var offset = ray * -0.5f;
+                        start += offset;
+                        var end = start + ray;
 
                         Debug.DrawLine(start, end, Color.black);
 
