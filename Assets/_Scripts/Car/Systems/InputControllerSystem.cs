@@ -24,6 +24,8 @@ namespace RxceGame
             foreach (var (playerCar, car) in
             SystemAPI.Query<PlayerTag, CarAspect>())
             {
+                if (car.IsDead())
+                    return;
 
                 if (Input.GetKey(KeyCode.Space))
                     car.Jump();

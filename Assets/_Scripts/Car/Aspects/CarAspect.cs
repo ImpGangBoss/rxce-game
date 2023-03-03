@@ -25,6 +25,7 @@ namespace RxceGame
                 _rigidBodyAspect.Mass = _moveParams.ValueRW.mass;
                 _moveParams.ValueRW.JumpTrigger = false;
                 _rigidBodyAspect.Position = spawnPos;
+                ResultContainer.Instance.SetStartHP(_moveParams.ValueRO.hp);
                 _moveParams.ValueRW.initialized = true;
             }
         }
@@ -61,37 +62,30 @@ namespace RxceGame
             _velocity.ValueRW.Linear *= (1f - deltaTime * _moveParams.ValueRO.brakeSpeed);
         }
 
-        public void SetJumpTrigger(bool v) => _moveParams.ValueRW.JumpTrigger = v;
-        public void SetDamageTrigger(bool v) => _moveParams.ValueRW.DamageTrigger = v;
-        public bool GetDamageTrigger() => _moveParams.ValueRW.DamageTrigger;
-
-        public Entity Entity() => _entity;
-
-        public float3 Position() => _rigidBodyAspect.Position;
-        public quaternion Rotation() => _rigidBodyAspect.Rotation;
-
-        public CarMoveParams GetMoveParams() => _moveParams.ValueRW;
-
         public void TakeDamage(float v)
         {
             _moveParams.ValueRW.hp -= v;
-            Debug.Log("Dame taken: " + v);
-            if (_moveParams.ValueRW.hp <= 0)
-            {
-                Debug.LogError("Dead");
-            }
+            ResultContainer.Instance.FillHP(_moveParams.ValueRO.hp);
             _moveParams.ValueRW.DamageTrigger = false;
         }
 
-        public float3 RotatePoint(float3 point, float3 pivot, float radians)
+        public bool IsDead()
         {
-            var cosTheta = math.cos(radians);
-            var sinTheta = math.sin(radians);
+            if (_moveParams.ValueRW.hp <= 0)
+            {
+                ResultContainer.Instance.ShowResults(0, Position().x);
+                return true;
+            }
 
-            var x = (cosTheta * (point.x - pivot.y) - sinTheta * (point.y - pivot.y) + pivot.x);
-            var y = (sinTheta * (point.x - pivot.x) + cosTheta * (point.y - pivot.y) + pivot.y);
-
-            return new float3(x, y, 0f);
+            return false;
         }
+
+        public void SetJumpTrigger(bool v) => _moveParams.ValueRW.JumpTrigger = v;
+        public void SetDamageTrigger(bool v) => _moveParams.ValueRW.DamageTrigger = v;
+        public bool GetDamageTrigger() => _moveParams.ValueRW.DamageTrigger;
+        public Entity Entity() => _entity;
+        public float3 Position() => _rigidBodyAspect.Position;
+        public quaternion Rotation() => _rigidBodyAspect.Rotation;
+        public CarMoveParams GetMoveParams() => _moveParams.ValueRW;
     }
 }
