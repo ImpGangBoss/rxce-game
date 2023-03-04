@@ -1500,8 +1500,9 @@ MonoBehaviour:
   position: {fileID: 1483275401}
   hpBar: {fileID: 1921982252}
   baseHPColor: {r: 0.38823533, g: 0.9960785, b: 0.65882355, a: 1}
-  damagedHPColor: {r: 1, g: 0, b: 0, a: 1}
-  damageLevel: 0.25
+  damagedHPColor: {r: 0.8962264, g: 0.37624598, b: 0.37624598, a: 1}
+  damageLevel: 0.45
+  carBodyMat: {fileID: 2100000, guid: 4eb1563e45c20604e8e0e25b3e71cc7c, type: 2}
 --- !u!1 &727771166
 GameObject:
   m_ObjectHideFlags: 0

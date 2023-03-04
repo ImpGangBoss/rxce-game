@@ -80,6 +80,16 @@ namespace RxceGame
             return false;
         }
 
+        public void ActivateDebuff()
+        {
+            _moveParams.ValueRW.acceleration *= 0.85f;
+            _moveParams.ValueRW.brakeSpeed *= 0.85f;
+            _moveParams.ValueRW.jumpImpulse *= 0.85f;
+            _moveParams.ValueRW.maxSpeed *= 0.85f;
+            _moveParams.ValueRW.rotationSpeed *= 0.85f;
+        }
+
+        public bool IsDamaged() => ResultContainer.Instance.IsDamaged();
         public void SetJumpTrigger(bool v) => _moveParams.ValueRW.JumpTrigger = v;
         public void SetDamageTrigger(bool v) => _moveParams.ValueRW.DamageTrigger = v;
         public bool GetDamageTrigger() => _moveParams.ValueRW.DamageTrigger;

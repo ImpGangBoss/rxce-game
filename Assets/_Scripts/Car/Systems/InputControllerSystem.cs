@@ -16,7 +16,6 @@ namespace RxceGame
         [BurstCompile]
         public void OnDestroy(ref SystemState state) { }
 
-        [BurstCompile]
         public void OnUpdate(ref SystemState state)
         {
             var deltaTime = Time.deltaTime;
@@ -26,6 +25,9 @@ namespace RxceGame
             {
                 if (car.IsDead())
                     return;
+
+                if (car.IsDamaged())
+                    car.ActivateDebuff();
 
                 if (Input.GetKey(KeyCode.Space))
                     car.Jump();

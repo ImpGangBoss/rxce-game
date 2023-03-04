@@ -2,6 +2,7 @@ using Unity.Entities;
 using Unity.Burst;
 using Unity.Collections;
 using UnityEngine;
+using Unity.Rendering;
 
 namespace RxceGame
 {

@@ -17,13 +17,13 @@ namespace RxceGame
         [SerializeField] private Color baseHPColor;
         [SerializeField] private Color damagedHPColor;
         [Range(0f, 1f)][SerializeField] private float damageLevel;
-        private float _startHP = 100f;
 
+        private float _startHP = 100f;
+        private bool _damaged;
         private bool _showPosition;
         private float _timer = 0f;
-        private bool _recordTime = false;
-        private bool _showingResult = false;
-
+        private bool _recordTime;
+        private bool _showingResult;
         void Start()
         {
             _recordTime = true;
@@ -54,16 +54,21 @@ namespace RxceGame
                 positionObject.SetActive(true);
                 position.text = playerPos.ToString();
             }
-
         }
 
         public void FillHP(float hp)
         {
             var fill = hp / _startHP;
-            if (fill < damageLevel)
+            if (fill < damageLevel && !_damaged)
+            {
+                _damaged = true;
                 hpBar.color = damagedHPColor;
+                //Object.FindObjectOfType<PlayerCarAuthoring>()?.gameObject?.GetComponent<Renderer>()?.material?.SetInt("Dirt", 1);
+            }
             hpBar.fillAmount = fill;
         }
+
+        public bool IsDamaged() => _damaged;
 
         public void SetStartHP(float hp) => _startHP = hp;
 
