@@ -26,8 +26,12 @@ namespace RxceGame
                 if (car.IsDead())
                     return;
 
-                if (car.IsDamaged())
+                if (car.IsDamaged() && !car.IsDebuffed())
+                {
                     car.ActivateDebuff();
+                    var sprite = state.EntityManager.GetComponentObject<SpriteRenderer>(car.Entity());
+                    sprite.color = sprite.color * 0.5f + Color.black;
+                }
 
                 if (Input.GetKey(KeyCode.Space))
                     car.Jump();

@@ -20,10 +20,12 @@ namespace RxceGame
 
         private float _startHP = 100f;
         private bool _damaged;
+        private bool _debuffed;
         private bool _showPosition;
         private float _timer = 0f;
         private bool _recordTime;
         private bool _showingResult;
+
         void Start()
         {
             _recordTime = true;
@@ -69,6 +71,9 @@ namespace RxceGame
         }
 
         public bool IsDamaged() => _damaged;
+
+        public void SetDebuffStatus(bool v) => _debuffed = v;
+        public bool IsDebuffed() => _debuffed;
 
         public void SetStartHP(float hp) => _startHP = hp;
 

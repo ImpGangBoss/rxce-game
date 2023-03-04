@@ -87,9 +87,12 @@ namespace RxceGame
             _moveParams.ValueRW.jumpImpulse *= 0.85f;
             _moveParams.ValueRW.maxSpeed *= 0.85f;
             _moveParams.ValueRW.rotationSpeed *= 0.85f;
+
+            ResultContainer.Instance.SetDebuffStatus(true);
         }
 
         public bool IsDamaged() => ResultContainer.Instance.IsDamaged();
+        public bool IsDebuffed() => ResultContainer.Instance.IsDebuffed();
         public void SetJumpTrigger(bool v) => _moveParams.ValueRW.JumpTrigger = v;
         public void SetDamageTrigger(bool v) => _moveParams.ValueRW.DamageTrigger = v;
         public bool GetDamageTrigger() => _moveParams.ValueRW.DamageTrigger;
