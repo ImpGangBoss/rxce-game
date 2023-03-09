@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 namespace RxceGame
 {
-    public class ResultContainer : SingletonComponent<ResultContainer>
+    public class IngameUIManager : SingletonComponent<IngameUIManager>
     {
         [SerializeField] private GameObject resultPanel;
         [SerializeField] private GameObject positionObject;
@@ -81,5 +81,7 @@ namespace RxceGame
         public void RestartGame() => SceneLoader.Instance.LoadGame();
 
         public void LoadGarage() => SceneLoader.Instance.LoadGarage();
+
+        public void Exit() => SceneLoader.Instance.Exit();
     }
 }

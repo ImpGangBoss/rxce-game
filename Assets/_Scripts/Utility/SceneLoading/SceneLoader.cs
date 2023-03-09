@@ -63,5 +63,7 @@ namespace RxceGame
 
         public void LoadGarage() => Load(Scene.Garage);
         public void LoadGame() => Load(Scene.Game);
+
+        public void Exit() => Application.Quit();
     }
 }

@@ -25,7 +25,7 @@ namespace RxceGame
                 _rigidBodyAspect.Mass = _moveParams.ValueRW.mass;
                 _moveParams.ValueRW.JumpTrigger = false;
                 _rigidBodyAspect.Position = spawnPos;
-                ResultContainer.Instance.SetStartHP(_moveParams.ValueRO.hp);
+                IngameUIManager.Instance.SetStartHP(_moveParams.ValueRO.hp);
                 _moveParams.ValueRW.initialized = true;
             }
         }
@@ -65,7 +65,7 @@ namespace RxceGame
         public void TakeDamage(float v)
         {
             _moveParams.ValueRW.hp -= v;
-            ResultContainer.Instance.FillHP(_moveParams.ValueRO.hp);
+            IngameUIManager.Instance.FillHP(_moveParams.ValueRO.hp);
             _moveParams.ValueRW.DamageTrigger = false;
         }
 
@@ -73,7 +73,7 @@ namespace RxceGame
         {
             if (_moveParams.ValueRW.hp <= 0)
             {
-                ResultContainer.Instance.ShowResults(0, Position().x);
+                IngameUIManager.Instance.ShowResults(0, Position().x);
                 return true;
             }
 
@@ -88,11 +88,11 @@ namespace RxceGame
             _moveParams.ValueRW.maxSpeed *= 0.85f;
             _moveParams.ValueRW.rotationSpeed *= 0.85f;
 
-            ResultContainer.Instance.SetDebuffStatus(true);
+            IngameUIManager.Instance.SetDebuffStatus(true);
         }
 
-        public bool IsDamaged() => ResultContainer.Instance.IsDamaged();
-        public bool IsDebuffed() => ResultContainer.Instance.IsDebuffed();
+        public bool IsDamaged() => IngameUIManager.Instance.IsDamaged();
+        public bool IsDebuffed() => IngameUIManager.Instance.IsDebuffed();
         public void SetJumpTrigger(bool v) => _moveParams.ValueRW.JumpTrigger = v;
         public void SetDamageTrigger(bool v) => _moveParams.ValueRW.DamageTrigger = v;
         public bool GetDamageTrigger() => _moveParams.ValueRW.DamageTrigger;
