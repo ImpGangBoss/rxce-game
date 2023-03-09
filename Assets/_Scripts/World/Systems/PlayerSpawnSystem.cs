@@ -2,7 +2,6 @@ using Unity.Entities;
 using Unity.Burst;
 using Unity.Collections;
 using UnityEngine;
-using Unity.Rendering;
 
 namespace RxceGame
 {
@@ -22,17 +21,21 @@ namespace RxceGame
 
         public void OnUpdate(ref SystemState state)
         {
-            state.Enabled = false;
-            var carHolder = SystemAPI.GetSingletonEntity<CarPrefabsHolderComponent>();
-            var prefabs = SystemAPI.GetBuffer<Prefab>(carHolder);
-            var carIndex = PlayerPrefs.GetInt("Car", 0);
+            if (SceneLoader.Instance.EnablePlayerSpawner)
+            {
+                var carHolder = SystemAPI.GetSingletonEntity<CarPrefabsHolderComponent>();
+                var prefabs = SystemAPI.GetBuffer<Prefab>(carHolder);
+                var carIndex = PlayerPrefs.GetInt("Car", 0);
 
-            var ecb = new EntityCommandBuffer(Allocator.Temp);
+                var ecb = new EntityCommandBuffer(Allocator.Temp);
 
-            var player = ecb.Instantiate(prefabs.ElementAt(carIndex));
-            ecb.AddComponent<PlayerTag>(player);
+                Debug.Log("Player spawned");
 
-            ecb.Playback(state.EntityManager);
+                var player = ecb.Instantiate(prefabs.ElementAt(carIndex));
+                ecb.AddComponent<PlayerTag>(player);
+
+                ecb.Playback(state.EntityManager);
+            }
         }
     }
 }

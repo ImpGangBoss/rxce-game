@@ -1,7 +1,6 @@
 using Unity.Entities;
 using UnityEngine;
 using Unity.Burst;
-
 namespace RxceGame
 {
     [BurstCompile]
@@ -23,6 +22,8 @@ namespace RxceGame
             foreach (var (playerCar, car) in
             SystemAPI.Query<PlayerTag, CarAspect>())
             {
+                SceneLoader.Instance.EnablePlayerSpawner = false;
+
                 if (car.IsDead())
                     return;
 

@@ -73,6 +73,7 @@ namespace RxceGame
         public bool IsDamaged() => _damaged;
 
         public void SetDebuffStatus(bool v) => _debuffed = v;
+
         public bool IsDebuffed() => _debuffed;
 
         public void SetStartHP(float hp) => _startHP = hp;

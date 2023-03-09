@@ -10,6 +10,7 @@ namespace RxceGame
         [SerializeField] private float delay;
         private Action onLoaderCallback;
         private AsyncOperation loadingAsyncOperation;
+        public bool EnablePlayerSpawner { get; set; }
 
         public enum Scene
         {
@@ -45,6 +46,7 @@ namespace RxceGame
             onLoaderCallback = () =>
             {
                 StartCoroutine(LoadSceneAsync(scene));
+                EnablePlayerSpawner = scene == Scene.Game;
             };
 
             SceneManager.LoadScene(Scene.Loading.ToString());
