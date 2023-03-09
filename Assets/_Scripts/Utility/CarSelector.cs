@@ -68,5 +68,7 @@ namespace RxceGame
             PlayerPrefs.SetInt(carKey, currentCarIndex);
             SceneLoader.Instance.LoadGame();
         }
+
+        public void OnExitPressed() => SceneLoader.Instance.Exit();
     }
 }

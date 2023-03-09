@@ -1297,9 +1297,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1958343503}
-        m_TargetAssemblyTypeName: RxceGame.SceneLoader, Assembly-CSharp
-        m_MethodName: Exit
+      - m_Target: {fileID: 2039732662}
+        m_TargetAssemblyTypeName: RxceGame.CarSelector, Assembly-CSharp
+        m_MethodName: OnExitPressed
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
